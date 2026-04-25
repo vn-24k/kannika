@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แด่ Tawan Kannika - รักจาก Vinícius Silva</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Sarabun', sans-serif;
+            background: radial-gradient(circle, #ff758c 0%, #ff7eb3 100%);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+        }
+
+        #main-container {
+            position: relative;
+            z-index: 10;
+        }
+
+        .heart-btn {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 25px 50px;
+            font-size: 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            animation: pulse 2s infinite;
+            transition: transform 0.3s;
+        }
+
+        .heart-btn:hover { transform: scale(1.05); }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .message {
+            display: none;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+
+        .show {
+            display: block !important;
+            opacity: 1 !important;
+        }
+
+        h1 { font-size: 2.2em; margin-bottom: 10px; }
+        p { font-size: 1.3em; margin: 5px 0; }
+
+        .particle {
+            position: absolute;
+            top: -10%;
+            z-index: 1;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="main-container">
+        <button class="heart-btn" id="startBtn">กดที่นี่เพื่อเปิดหัวใจ (Clique aqui)</button>
+        
+        <div id="message1" class="message">
+            <h1>พรหมลิขิตทำให้เราได้มาพบกัน</h1>
+            <p>O destino nos uniu, e meu coração</p>
+            <p>é seu para sempre.</p>
+        </div>
+
+        <div id="message2" class="message">
+            <h1>รักคุณมากกว่าคำบรรยาย</h1>
+            <p>ขอบคุณที่เข้ามาเติมเต็มชีวิตของฉันนะ</p>
+            <p>(Amo você mais do que palavras podem descrever.)</p>
+            <p><strong>ขอบคุณนะ Tawan Kannika</strong></p>
+            <p>จาก Vinícius Silva</p>
+        </div>
+    </div>
+
+    <script>
+        const startBtn = document.getElementById('startBtn');
+        const msg1 = document.getElementById('message1');
+        const msg2 = document.getElementById('message2');
+        const body = document.body;
+
+        function createParticle(symbol, color) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.style.left = Math.random() * 100 + 'vw';
+            p.style.animationDuration = Math.random() * 3 + 3 + 's';
+            p.style.fontSize = Math.random() * 20 + 15 + 'px';
+            p.style.color = color;
+            p.innerHTML = symbol;
+            body.appendChild(p);
+            setTimeout(() => p.remove(), 6000);
+        }
+
+        startBtn.addEventListener('click', () => {
+            startBtn.style.display = 'none';
+            msg1.classList.add('show');
+            const rain = setInterval(() => createParticle('❤️', '#fff'), 300);
+
+            setTimeout(() => {
+                msg1.classList.remove('show');
+                msg2.classList.add('show');
+                clearInterval(rain);
+                setInterval(() => createParticle('🌸', '#ffb3ba'), 150);
+                setInterval(() => createParticle('💖', '#ff4d4d'), 250);
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
+
